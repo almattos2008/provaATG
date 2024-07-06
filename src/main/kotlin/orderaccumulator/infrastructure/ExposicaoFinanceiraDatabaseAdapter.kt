@@ -5,8 +5,10 @@ import orderaccumulator.domain.model.Order
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.RowMapper
 import org.springframework.jdbc.support.GeneratedKeyHolder
+import org.springframework.stereotype.Repository
 import java.sql.ResultSet
 
+@Repository
 class ExposicaoFinanceiraDataBaseAdapter(
     private val jdbcTemplate: JdbcTemplate
 ): ExposicaoFinanceiraRepository {

@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      enabled: true
+spring:
+  flyway:
+    enabled: true
+    locations: [classpath:db/migration]
+    baselineOnMigrate: true
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    schemas: ${DB_SCHEMA}
+    user: ${DB_USER}
+    password: ${DB_PASS}
+  datasource:
+    hikari:
+      connectionTestQuery: SELECT 1
+      minimumIdle: 1
+      maximumPoolSize: 10
+      poolName: pool
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect

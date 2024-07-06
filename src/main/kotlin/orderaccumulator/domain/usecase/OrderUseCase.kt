@@ -3,8 +3,10 @@ package orderaccumulator.domain.usecase
 import orderaccumulator.domain.model.Order
 import orderaccumulator.domain.model.OrderResponse
 import orderaccumulator.domain.repository.ExposicaoFinanceiraRepository
+import org.springframework.stereotype.Service
 import java.math.BigDecimal
 
+@Service
 class OrderUseCase(private val exposicaoFinanceiraRepository : ExposicaoFinanceiraRepository) {
 
     fun orderDealer(newOrder: Order): OrderResponse {

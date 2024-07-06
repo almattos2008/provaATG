@@ -3,7 +3,9 @@ package orderaccumulator.application.handler
 import orderaccumulator.domain.model.Order
 import orderaccumulator.domain.model.OrderResponse
 import orderaccumulator.domain.usecase.OrderUseCase
+import org.springframework.stereotype.Component
 
+@Component
 open class OrderHandler(private val orderUseCase: OrderUseCase) {
 
     fun orderDealerHandler(order: Order): OrderResponse{
