@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Orders</title>
+  <link rel="stylesheet" href="orderCSS.css">
+</head>
+<body>
+    <div id="registration-form">
+        <div class='fieldset'>
+          <legend>Order</legend>
+          <form class="login-form" id = "login-form">
+            <div class='row'>
+              <select id="ativo" name="ativo" type="text">
+                <option value="PETR4">PETR4</option>
+                <option value="VALE3">VALE3</option>
+                <option value="VIIA4">VIIA4</option>
+              </select>
+            </div>
+            <div class='row'>
+              <select id="lado" name="lado">
+                <option value="C">Compra</option>
+                <option value="V">Venda</option>
+              </select>
+            </div>
+            <div class='row'>
+                <label for='quantidade'>Quantidade</label>
+                <input type="number" required placeholder="Quantidade" name='quantidade' id='quantidade' data-required="true" data-error-message="Quantidade é obrigatório">
+            </div>
+            <div class='row'>
+                <label for='preco'>Preço</label>
+                <input type="number" required step="0.01" placeholder="Preço" name='preco' id='preco' data-required="true" data-error-message="Preço é obrigatório">
+            </div>
+            <input type="submit" value="Calcular">
+          </form>
+        </div>
+      </div>
+    <div class='fieldset' id="result">
+      <div class='fieldset' id="sucesso"></div>
+      <div class='fieldset' id="exposicao"></div>
+      <div class='fieldset' id="erros"></div>
+    </div>
+      <script src="./order.js"></script>
+</body>
+</html>
