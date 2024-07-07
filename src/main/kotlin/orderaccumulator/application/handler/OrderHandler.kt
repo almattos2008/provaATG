@@ -3,21 +3,24 @@ package orderaccumulator.application.handler
 import orderaccumulator.domain.model.Order
 import orderaccumulator.domain.model.OrderResponse
 import orderaccumulator.domain.usecase.OrderUseCase
+import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatusCode
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
 
 @Component
 open class OrderHandler(private val orderUseCase: OrderUseCase) {
 
-    fun orderDealerHandler(order: Order): OrderResponse{
+    fun orderDealerHandler(order: Order): ResponseEntity<OrderResponse>{
 
         var erros: MutableList<String> = arrayListOf()
 
         erros = checkErrors(order, erros)
 
         return if (erros.isEmpty()){
-            orderUseCase.orderDealer(order)
+            ResponseEntity.ok().body(orderUseCase.orderDealer(order))
         } else{
-            buildErrorReturn(erros)
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(buildErrorReturn(erros))
         }
 
     }
