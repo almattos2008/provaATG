@@ -35,3 +35,15 @@ data class OrderResponse(
         }
     }
 }
+
+enum class AtivoEnum{
+    PETR4,VALE3,VIIA4
+}
+
+enum class LadoEnum{
+    C,V
+}
+
+inline fun <reified T : Enum<T>> enumContains(name: String): Boolean {
+    return enumValues<T>().any { it.name == name}
+}

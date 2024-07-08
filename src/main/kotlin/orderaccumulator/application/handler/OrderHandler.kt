@@ -1,10 +1,8 @@
 package orderaccumulator.application.handler
 
-import orderaccumulator.domain.model.Order
-import orderaccumulator.domain.model.OrderResponse
+import orderaccumulator.domain.model.*
 import orderaccumulator.domain.usecase.OrderUseCase
 import org.springframework.http.HttpStatus
-import org.springframework.http.HttpStatusCode
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
 
@@ -28,21 +26,17 @@ open class OrderHandler(private val orderUseCase: OrderUseCase) {
     private fun checkErrors(order: Order, erros: MutableList<String>): MutableList<String>{
         val priceLowComparison = order.preco.compareTo(0.01.toBigDecimal())
         val priceHighComparison = order.preco.compareTo(1000.toBigDecimal())
-        if (order.ativo == "PETR4" || order.ativo == "VALE3" || order.ativo == "VIIA4"){
-
-        }else{
-            erros.add("Ativo não permitido")
+        if (!enumContains<AtivoEnum>(order.ativo)){
+            erros.add("ativo não permitido")
         }
-        if (order.lado == "C" || order.lado == "V"){
-
-        }else{
-            erros.add("Lado não permitido")
+        if (!enumContains<LadoEnum>(order.lado)){
+            erros.add("lado não permitido")
         }
         if (order.quantidade<1 || order.quantidade > 100000){
-            erros.add("Quantidade não permitida")
+            erros.add("quantidade não permitida")
         }
         if (priceLowComparison==-1 || priceHighComparison==1){
-            erros.add("Preço não permitido")
+            erros.add("preço não permitido")
         }
         return erros
     }
